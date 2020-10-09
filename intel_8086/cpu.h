@@ -9,9 +9,9 @@
 #define	CX	0x01 //count register
 #define	DX	0x02 //data register
 #define	BX	0x03 //base register
-#define	SP	0x04 //stek pointer
+#define	SP	0x04 //stack pointer
 #define	BP	0x05 //base pointer
-#define	SI	0x06 //sourse index
+#define	SI	0x06 //source index
 #define	DI	0x07 //destination index
 
 #define	AL	0x00
