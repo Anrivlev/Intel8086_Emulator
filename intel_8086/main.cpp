@@ -5,24 +5,25 @@ using namespace intel_8086;
 
 int main() {
 
-    init();
-    //------------ SOURCE --------------//
-        alloc(  movcl,  (u8)0xFF    );  // red component set to 255
-    // loop                             //
-        alloc(  movdx,  (u16)0x0000 );  // green, blue components set to 0
-        alloc(  intr,   (u8)0x02    );  // change background color of text
-        alloc(  movdx,  (u16)0x0014 );  // pass address of space character to dx register
-        alloc(  intr,   (u8)0x03    );  // print char to stdout
-        alloc(  deccl               );  // decrement cl register 5 times
-        alloc(  deccl               );  //      because cl is the red component
+    init();                             // Эта функция "включает" эмулятор,
+	                                    // выделяет память для регистров и RAM
+    //--------- Исходный код -----------// Исходный код помещается в RAM эмулятора
+        alloc(  movcl,  (u8)0xFF    );  // Устанавливаем красный цвет (0xFF = 255) в RGB
+    // Цикл                             //
+        alloc(  movdx,  (u16)0x0000 );  // Зануляем синий и зеленый
+        alloc(  intr,   (u8)0x02    );  // Меняем задний фон в консоли
+        alloc(  movdx,  (u16)0x0014 );  // Передаем адрес "пробела" в регистр DX
+        alloc(  intr,   (u8)0x03    );  // Выводим символ по адресу из DX в консоль
+        alloc(  deccl               );  // Декрементируем регистр CL 5 раз
+        alloc(  deccl               );  //      (в нем хранится красный цвет RGB)
         alloc(  deccl               );  //
         alloc(  deccl               );  //
         alloc(  deccl               );  //
-        alloc(  jmp,    (u16)0x0002 );  // jump back to address of loop
-    //------------- DATA ---------------//
-        alloc(          (u8)' '     );
-    exec();
-    die();
+        alloc(  jmp,    (u16)0x0002 );  // Отправляемся в начало цикла
+    //------------ Данные --------------// Они тоже помещаются в RAM
+        alloc(          (u8)' '     );  // Символ "пробел"
+    exec();                             // Записанные команды исполняются эмулятором
+    die();                              // Выключение эмулятора
 
     return 0;
 }
