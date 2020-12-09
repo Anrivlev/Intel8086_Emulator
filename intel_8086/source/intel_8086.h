@@ -4,7 +4,7 @@
 #include <iostream>
 #include "intel_8086_console.h"
 
-#define RAM 0x1000
+#define RAM 0x400
 
 typedef uint16_t u16;
 typedef uint8_t u8;
