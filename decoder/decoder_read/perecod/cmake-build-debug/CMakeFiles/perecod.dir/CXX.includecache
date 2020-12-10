@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zhanna/Temp/perecod/main.cpp
+stdio.h
+-
+process.h
+-
+string.h
+-
+dos.h
+-
+curses.h
+-
+
